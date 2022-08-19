@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { TextInput, StyleSheet, Button, View } from "react-native";
 import { authentication } from "./firebase/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 
 export default function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -9,10 +13,31 @@ export default function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const SignInUser = () => {
+    signInWithEmailAndPassword(authentication, email, password)
+      .then((re) => {
+        setIsSignedIn(true);
+      })
+      .catch((re) => {
+        console.log(re);
+      });
+  };
+  const SignOutUser = () => {
+    signOut(authentication)
+      .then((re) => {
+        setIsSignedIn(false);
+        console.log("User: succesful sign out");
+      })
+      .catch((re) => {
+        console.log(re);
+      });
+  };
+
   const RegisterUser = () => {
     createUserWithEmailAndPassword(authentication, email, password)
       .then((re) => {
         console.log(re);
+        setIsSignedIn(true);
       })
       .catch((re) => {
         console.log(re);
@@ -34,6 +59,11 @@ export default function App() {
           onChangeText={(text) => setPassword(text)}
           secureTextEntry={true}
         />
+        {isSignedIn == true ? (
+          <Button title="Sing Out" onPress={SignOutUser} />
+        ) : (
+          <Button title="Sign In" onPress={SignInUser} />
+        )}
         <Button title="Register" onPress={RegisterUser} />
       </View>
     </View>
