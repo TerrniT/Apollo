@@ -7,9 +7,9 @@ import {
   signOut,
 } from "firebase/auth";
 
-export default function App() {
+ export default function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
-
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -22,6 +22,7 @@ export default function App() {
         console.log(re);
       });
   };
+
   const SignOutUser = () => {
     signOut(authentication)
       .then((re) => {
