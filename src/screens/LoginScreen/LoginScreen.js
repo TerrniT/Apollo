@@ -9,7 +9,7 @@ import {
 import ALButton from "../../components/ALButton";
 import ASButton from "../../components/ASButton";
 import APInput from "../../components/APInput";
-
+import APInputPassword from "../../components/APInputPassword";
 export default function loginScreen() {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
@@ -59,9 +59,8 @@ export default function loginScreen() {
           secureTextEntry={false}
           onChangeText={(text) => setEmail(text)}
         />
-        <APInput
+        <APInputPassword
           title="Password"
-          secureTextEntry={true}
           onChangeText={(text) => setPassword(text)}
         />
         <ASButton title="Log In" onPress={SignInUser} />

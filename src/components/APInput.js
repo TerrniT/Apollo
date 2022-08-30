@@ -1,6 +1,6 @@
 import React from "react";
 import { Akira } from "react-native-textinput-effects";
-import { View, StyleSheet } from "react-native";
+
 export default function APInput({ title, onChangeText, secureTextEntry }) {
   return (
     <Akira
@@ -15,6 +15,7 @@ export default function APInput({ title, onChangeText, secureTextEntry }) {
         borderRadius: 15,
         alignItems: "center",
       }}
+      inputStyle={{ color: "#fff" }}
       secureTextEntry={secureTextEntry}
     />
   );
