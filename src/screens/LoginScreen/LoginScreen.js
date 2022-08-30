@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextInput, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { authentication } from "../../../firebase/firebase";
 import {
   createUserWithEmailAndPassword,
@@ -10,6 +10,8 @@ import ALButton from "../../components/ALButton";
 import ASButton from "../../components/ASButton";
 import APInput from "../../components/APInput";
 import APInputPassword from "../../components/APInputPassword";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
 export default function loginScreen() {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
@@ -53,19 +55,17 @@ export default function loginScreen() {
         <Text style={styles.heading}>Welcome to </Text>
         <Text style={styles.heading}>Apollo</Text>
       </View>
-      <View style={styles.inputContainer}>
-        <APInput
-          title="Name"
-          secureTextEntry={false}
-          onChangeText={(text) => setEmail(text)}
-        />
-        <APInputPassword
-          title="Password"
-          onChangeText={(text) => setPassword(text)}
-        />
-        <ASButton title="Log In" onPress={SignInUser} />
-        <ALButton title="Register" onPress={RegisterUser} />
-      </View>
+      <APInput
+        title="Name"
+        secureTextEntry={false}
+        onChangeText={(text) => setEmail(text)}
+      />
+      <APInputPassword
+        title="Password"
+        onChangeText={(text) => setPassword(text)}
+      />
+      <ASButton title="Log In" onPress={SignInUser} />
+      <ALButton title="Register" onPress={RegisterUser} />
     </View>
   );
 }

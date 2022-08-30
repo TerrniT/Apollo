@@ -14,6 +14,7 @@ export default function APInput({ title, onChangeText, secureTextEntry }) {
       style={{
         borderRadius: 15,
         alignItems: "center",
+        width: "80%",
       }}
       inputStyle={{ color: "#fff" }}
       secureTextEntry={secureTextEntry}
