@@ -10,7 +10,6 @@ import ALButton from "../../components/ALButton";
 import ASButton from "../../components/ASButton";
 import APInput from "../../components/APInput";
 import APInputPassword from "../../components/APInputPassword";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function loginScreen() {
   const [isSignedIn, setIsSignedIn] = useState(false);
