@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { authentication } from "../../../firebase/firebase";
+import { authentication } from "../../firebase/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import ALButton from "../../components/ALButton";
-import ASButton from "../../components/ASButton";
-import APInput from "../../components/APInput";
-import APInputPassword from "../../components/APInputPassword";
+import ALButton from "../components/ALButton";
+import ASButton from "../components/ASButton";
+import APInput from "../components/APInput";
+import APInputPassword from "../components/APInputPassword";
+import APClickableText from "../components/APClickableText";
+import RegistrationScreen from "../screens/RegistrationScreen";
 
-export default function loginScreen() {
+export default function loginScreen({ navigation }) {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
   const [email, setEmail] = useState("");
@@ -63,8 +65,11 @@ export default function loginScreen() {
         title="Password"
         onChangeText={(text) => setPassword(text)}
       />
+      <APClickableText text={"Forgot about Password?"} onPress={""} />
       <ASButton title="Log In" onPress={SignInUser} />
       <ALButton title="Register" onPress={RegisterUser} />
+      {!isSignedIn ? null : navigation.navigate("RegistrationScreen")}
+      <ALButton title="SignOut" onPress={SignOutUser} />
     </View>
   );
 }
