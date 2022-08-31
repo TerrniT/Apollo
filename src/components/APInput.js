@@ -1,7 +1,12 @@
 import React from "react";
 import { Akira } from "react-native-textinput-effects";
 
-export default function APInput({ title, onChangeText, secureTextEntry }) {
+export default function APInput({
+  title,
+  onChangeText,
+  secureTextEntry,
+  placeholder,
+}) {
   return (
     <Akira
       onChangeText={onChangeText}
@@ -18,6 +23,7 @@ export default function APInput({ title, onChangeText, secureTextEntry }) {
       }}
       inputStyle={{ color: "#fff" }}
       secureTextEntry={secureTextEntry}
+      placeholder={placeholder}
     />
   );
 }

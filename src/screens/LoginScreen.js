@@ -69,7 +69,6 @@ export default function loginScreen({ navigation }) {
       <ASButton title="Log In" onPress={SignInUser} />
       <ALButton title="Register" onPress={RegisterUser} />
       {!isSignedIn ? null : navigation.navigate("RegistrationScreen")}
-      <ALButton title="SignOut" onPress={SignOutUser} />
     </View>
   );
 }
