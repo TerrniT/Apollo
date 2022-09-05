@@ -2,6 +2,7 @@ import React from "react";
 import { Akira } from "react-native-textinput-effects";
 
 export default function APInputPassword({ title, onChangeText }) {
+
   return (
     <Akira
       onChangeText={onChangeText}

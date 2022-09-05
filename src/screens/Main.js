@@ -3,22 +3,27 @@ import React from "react";
 import ASButton from "../components/ASButton";
 import APInput from "../components/APInput";
 import { authentication } from "../../firebase/firebase";
-import LoginScreen from "../screens/LoginScreen";
+import { signOut } from "firebase/auth"
+import {useNavigation} from "@react-navigation/native";
 
-export default function RegistrationScreen({ navigation }) {
-  const signOut = () => {
-    authentication
-      .signOut()
-      .then((re) => navigation.navigate("LoginScreen"))
-      .catch((error) => {
-        console.log(error);
+export default function Main() {
+
+  const navigation = useNavigation()
+
+  const SignOutUser = () => {
+    signOut(authentication)
+      .then((re) => {
+        navigation.navigate("LoginScreen")
+      })
+      .catch((re) => {
+        alert(re);
       });
   };
 
   return (
     <View style={styles.container}>
       <APInput placeholder={"Yay"} />
-      <ASButton title="Sign Out" onPress={signOut} />
+      <ASButton title="Sign Out" onPress={SignOutUser} />
     </View>
   );
 }
