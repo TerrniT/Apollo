@@ -12,12 +12,10 @@ export default function Main() {
 
   const SignOutUser = () => {
     signOut(authentication)
-      .then((re) => {
-        navigation.navigate("LoginScreen")
+      .then(() => {
+        navigation.replace("LoginScreen")
       })
-      .catch((re) => {
-        alert(re);
-      });
+      .catch(error => alert(error.message));
   };
 
   return (

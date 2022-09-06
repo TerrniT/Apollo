@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 import { authentication } from "../../firebase/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut,
 } from "firebase/auth";
 import ALButton from "../components/ALButton";
 import ASButton from "../components/ASButton";
 import APInput from "../components/APInput";
 import APInputPassword from "../components/APInputPassword";
 import APClickableText from "../components/APClickableText";
-import RegistrationScreen from "./Main";
 import {useNavigation} from "@react-navigation/native";
 
 // TODO: add registration for new users
@@ -34,21 +32,11 @@ export default function LoginScreen() {
 
     return unsubscribe
   }, [])
+
   const SignInUser = () => {
     signInWithEmailAndPassword(authentication, email, password)
       .then((re) => {
         setIsSignedIn(true);
-      })
-      .catch((re) => {
-        console.log(re);
-      });
-  };
-
-  const SignOutUser = () => {
-    signOut(authentication)
-      .then((re) => {
-        setIsSignedIn(false);
-        console.log("User: succesful sign out");
       })
       .catch((re) => {
         console.log(re);
@@ -78,12 +66,14 @@ export default function LoginScreen() {
       />
       <APInputPassword
         title="Password"
+        placeholder="No"
         onChangeText={(text) => setPassword(text)}
       />
       <APClickableText text={"Forgot about Password?"} onPress={""} />
       <ASButton title="Log In" onPress={SignInUser} />
       <ALButton title="Register" onPress={RegisterUser} />
-      {!isSignedIn ? null : navigation.navigate("Main")}
+
+      {!isSignedIn ? null : navigation.navigate("Main") }
     </View>
   );
 }
