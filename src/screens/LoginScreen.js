@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { authentication } from "../../firebase/firebase";
 import {
   createUserWithEmailAndPassword,
@@ -10,28 +10,28 @@ import ASButton from "../components/ASButton";
 import APInput from "../components/APInput";
 import APInputPassword from "../components/APInputPassword";
 import APClickableText from "../components/APClickableText";
-import {useNavigation} from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
 // TODO: add registration for new users
 // TODO: when user entered the wrong data make visual (pop up or just red text with shaking inputs)
 // TODO: check for existing users or if data not in database create new user and log-in after that
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   useEffect(() => {
-    const unsubscribe = authentication.onAuthStateChanged(user => {
+    const unsubscribe = authentication.onAuthStateChanged((user) => {
       if (user) {
-        navigation.navigate("Main")
+        navigation.navigate("Main");
       }
-    })
+    });
 
-    return unsubscribe
-  }, [])
+    return unsubscribe;
+  }, []);
 
   const SignInUser = () => {
     signInWithEmailAndPassword(authentication, email, password)
@@ -46,6 +46,7 @@ export default function LoginScreen() {
   const RegisterUser = () => {
     createUserWithEmailAndPassword(authentication, email, password)
       .then((re) => {
+        navigation.navigate("Sign Up");
         console.log(re);
         setIsSignedIn(true);
       })
@@ -73,7 +74,7 @@ export default function LoginScreen() {
       <ASButton title="Log In" onPress={SignInUser} />
       <ALButton title="Register" onPress={RegisterUser} />
 
-      {!isSignedIn ? null : navigation.navigate("Main") }
+      {!isSignedIn ? null : navigation.navigate("Main")}
     </View>
   );
 }
