@@ -1,12 +1,18 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
-import ASButton from "../components/ASButton";
+import { StyleSheet, Text, View } from "react-native";
 import ALButton from "../components/ALButton";
-import "firebase/auth";
+import ASButton from "../components/ASButton";
+import APInput from "../components/APInput";
+import APInputPassword from "../components/APInputPassword";
+import APClickableText from "../components/APClickableText";
 
-export default function SignUp({ navigation }) {
+export default function RegisterUser() {
   return (
     <View style={styles.container}>
+      <View>
+        <Text style={styles.heading}>Welcome to </Text>
+        <Text style={styles.heading}>Apollo</Text>
+      </View>
       <APInput
         title="Name"
         secureTextEntry={false}
@@ -17,21 +23,9 @@ export default function SignUp({ navigation }) {
         placeholder="No"
         onChangeText={(text) => setPassword(text)}
       />
-      <APInputPassword
-        title="Password"
-        placeholder="No"
-        onChangeText={(text) => setPassword(text)}
-      />
-      <ASButton
-        onClick={() => SignUp()}
-        title="Sign Up"
-        style={{ width: "48%" }}
-      />
-      <ALButton
-        onClick={() => navigation.replace("Login")}
-        title="Login"
-        style={{ width: "48%", backgroundColor: "#344869" }}
-      />
+      <APClickableText text={"Forgot about Password?"} onPress={""} />
+      <ASButton title="Log In" onPress={SignInUser} />
+      <ALButton title="Register" onPress={RegisterUser} />
 
       {!isSignedIn ? null : navigation.navigate("Main")}
     </View>

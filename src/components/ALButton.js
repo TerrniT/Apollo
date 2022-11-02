@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
   },
   ALButtonText: {
     fontSize: 22,
+    color: "white",
     alignSelf: "center",
     textTransform: "uppercase",
     fontWeight: "bold",

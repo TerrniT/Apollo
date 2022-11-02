@@ -16,7 +16,7 @@ import { useNavigation } from "@react-navigation/native";
 // TODO: when user entered the wrong data make visual (pop up or just red text with shaking inputs)
 // TODO: check for existing users or if data not in database create new user and log-in after that
 
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen() {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
   const [email, setEmail] = useState("");
@@ -38,22 +38,23 @@ export default function LoginScreen({ navigation }) {
       .then((re) => {
         setIsSignedIn(true);
       })
-      .catch((re) => {
-        console.log(re);
+      .catch((er) => {
+        console.log(er);
       });
   };
 
   const RegisterUser = () => {
     createUserWithEmailAndPassword(authentication, email, password)
       .then((re) => {
-        navigation.navigate("Sign Up");
+        navigation.navigate("SignUp");
         console.log(re);
         setIsSignedIn(true);
       })
-      .catch((re) => {
-        console.log(re);
+      .catch((er) => {
+        console.log(er);
       });
   };
+
   return (
     <View style={styles.container}>
       <View>
